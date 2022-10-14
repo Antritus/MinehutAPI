@@ -3,6 +3,7 @@
 # This skript allows the use of minehut api (made by Antritus) to be used in other plugins
 # This skript does not break if ACMHCosmeticsDisabler.sk is in use
 # Requires skript, skript-reflect, MinehutCosmetics
+import:
 	org.bukkit.Bukkit
 on load:
 	set {antcore::pm::minehut} to Bukkit.getServer().getPluginManager().getPlugin("MinehutCosmetics")
