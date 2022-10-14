@@ -45,14 +45,13 @@ Effects:
 ```
 send [the] minehut rank %string%' data to %players%
 send [the] data of [minehut] rank %string% to %players%
-``
+```
 ## ACMHPlaceholders.sk
 ```
 Types:
-```
 %id% = the name of the rank
 ```
- Player rank
+Player rank
 ```
 %minehutapi_player_rank% = rank of the placeholder player
 ```
