@@ -1,0 +1,40 @@
+# Skript owned by Antritus
+# Original download site: 
+# This skritp allows the use of minehut api (made by Antritus) to be used in other plugins
+# Requires skript, skript-reflect, minehutcosmetics, MinehutAPI skript(ACMHAPI.sk), skript-placeholders
+on placeholderapi placeholder request for the prefix "minehutapi":
+	set {_todo} to "TD"
+	set {_unknown} to "Unknown"
+	if the identifier is "player_rank":
+		set the result to "%the player's minehut rank ? {_unknown}%"
+	set {_id} to the identifier
+	if {_id} contains "rank_id;":
+		replace "rank_id;" with "" in {_id}
+		set the result to "%{_id}%"
+	if {_id} contains "rank_prefix;":
+		replace "rank_prefix;" with "" in {_id}
+		set the result to "%the minehut rank {_id}'s prefix ? {_unknown}%"
+	if {_id} contains "rank_prefix_color;":
+		replace "rank_prefix_color;" with "" in {_id}
+		set the result to "%the minehut rank {_id}'s prefix color ? {_unknown}%"
+	if {_id} contains "rank_permissions;":
+		replace "rank_permissions;" with "" in {_id}
+		set the result to "%the minehut rank {_id}'s permissions ? {_unknown}%"
+	if {_id} contains "rank_extra_permissions;":
+		replace "rank_extra_permissions;" with "" in {_id}
+		set the result to "%the minehut rank {_id}'s extra auras ? {_unknown}%"
+	if {_id} contains "rank_extra_auras;":
+		replace "rank_extra_auras;" with "" in {_id}
+		set the result to "%the minehut rank {_id}'s extra auras ? {_unknown}%"
+	if {_id} contains "rank_chat_delay;":
+		replace "rank_chat_delay;" with "" in {_id}
+		set the result to "%the minehut rank {_id}'s chat cooldown ? {_unknown}%"
+	if {_id} contains "rank_chat_cooldown;":
+		replace "rank_chat_cooldown;" with "" in {_id}
+		set the result to "%the minehut rank {_id}'s chat cooldown ? {_unknown}%"
+	if {_id} contains "rank_ordinal;":
+		replace "rank_ordinal;" with "" in {_id}
+		set the result to "%the minehut rank {_id}'s ordinal ? {_unknown}%"
+	if {_id} contains "ranks;":
+		replace "ranks;" with "" in {_id}
+		set the result to "%the minehut ranks ? {_unknown}%"
