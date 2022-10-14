@@ -1,0 +1,38 @@
+# Skript owned by Antritus
+# Original upload site: https://github.com/Antritus/MinehutAPI/blob/com.gmail.antcoreservices/ACMHCosmeticDisabler.sk
+# This skript allows the use of minehut api (made by Antritus) to be used in other plugins
+# This skript does not disable the usage of ACMHAPI.sk and ACMHPlaceholders.sk
+# Requires skript, skript-reflect
+import:
+	org.bukkit.Bukkit
+	org.bukkit.event.player.PlayerCommandPreprocessEvent
+on PlayerCommandPreprocessEvent:
+	if event.getMessage() contains "minehutcosmetics":
+		send "&8[&3Ant&bCore&8] &cThis feature is disabled!" to event.getPlayer()
+		event.setCancelled(true)
+	if event.getMessage() = "skin":
+		send "&8[&3Ant&bCore&8] &cThis feature is disabled!" to event.getPlayer()
+		event.setCancelled(true)
+	if event.getMessage() = "unskin":
+		send "&8[&3Ant&bCore&8] &cThis feature is disabled!" to event.getPlayer()
+		event.setCancelled(true)
+	if event.getMessage() = "cosmetics":
+		send "&8[&3Ant&bCore&8] &cThis feature is disabled!" to event.getPlayer()
+		event.setCancelled(true)
+	if event.getMessage() = "cosmeticsdebug":
+		send "&8[&3Ant&bCore&8] &cThis feature is disabled!" to event.getPlayer()
+		event.setCancelled(true)
+on load:
+	set {_plugin} to Bukkit.getServer().getPluginManager().getPlugin("MinehutCosmetics")
+	set {_pm} to Bukkit.getServer().getPluginManager()
+	if {_plugin} is not set:
+		send "&8[&3Ant&bCore&8] &aMinehut cosmetics not found!" to console
+		stop
+	if {_plugin}.isEnabled() is true:
+#		Bukkit.getServer().getPluginManager().disablePlugin(getServer().getPluginManager.getPlugin("MinehutCosmetics"))
+		{_pm}.disablePlugin({_plugin})
+#		Bukkit.getServer().getPluginManager().disablePlugin(getServer().getPluginManager().getPlugin("MinehutCosmetics"));
+		send "&8[&3Ant&bCore&8] &aDisabled minehut cosmetics!" to console
+		stop
+	else:
+		send "&8[&3Ant&bCore&8] &aDisabled minehut cosmetics already is not loaded!" to console
