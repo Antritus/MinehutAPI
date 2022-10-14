@@ -69,3 +69,18 @@ Minehut rank
 # ALL THE RANKS
 %minehutapi_ranks%
 ```
+## ACMHCosmeticsDisabler.sk
+This disables all the commands in minehut cosmetics and the plugin
+This disables following commands:
+```
+# Plugin commands
+/minehutcosmetics:skin
+/minehutcosmetics:unskin
+/minehutcosmetics:cosmetics
+/minehutcosmetics:cosmeticsdebug
+
+/skin
+/unskin
+/cosmetics
+/cosmeticsdebug
+```
