@@ -1,17 +1,19 @@
 # MinehutAPI Skripts
 
 ## MinehutAPI (ACMHAPI.sk)
-Types
+###Types
 ```
 %rank% = %string%
 ```
-Expressions:
+###Expressions
+####Player expressions
 ```
 # Player expressions
 [the] %player%'s minehut rank
 [the] minehut rank of %player%
-
-# Minehut ranks
+```
+####Rank expressions
+```
 # Prefix
 [the] minehut rank %rank%'s prefix%
 [the] prefix of [the] minehut rank %rank%
@@ -39,8 +41,31 @@ Expressions:
 [the] minehut ranks
 [the] ranks of minehut
 ```
-Effects:
+###Effects:
 ```
 send [the] minehut rank %string%' data to %players%
 send [the] data of [minehut] rank %string% to %players%
 ``
+## ACMHPlaceholders.sk
+```
+####Types:
+```
+%id% = the name of the rank
+```
+#### Player rank
+```
+%minehutapi_player_rank% = rank of the placeholder player
+```
+### Minehut rank
+```
+%minehutapi_rank_id;%id%% = the id of the rank (same as %id%
+%minehutapi_rank_prefix;%id%% = prefix of the rank
+%minehutapi_rank_prefix_color;%id%% = color of the rank
+%minehutapi_rank_permissions;%id%% = permissions of the rank
+%minehutapi_rank_extra_permissions;%id%% = extra permissions of the rank
+%minehutapi_rank_extra_auras;%id%% = auras of the rank
+%minehutapi_rank_chat_delay;%id%% = the chat cooldown of the rank
+%minehutapi_rank_chat_cooldown;%id%% = the chat cooldown of the rank
+%minehutapi_rank_ordinal% = the rank java id (in arraylist) (ADMIN = 0)
+%minehutapi_ranks%
+```
