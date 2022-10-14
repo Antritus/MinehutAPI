@@ -1,6 +1,6 @@
 # Skript owned by Antritus
 # Original upload site: https://github.com/Antritus/MinehutAPI/blob/com.gmail.antcoreservices/ACMHPlaceholders.sk
-# This skritp allows the use of minehut api (made by Antritus) to be used in other plugins
+# This skript allows the use of minehut api (made by Antritus) to be used in other plugins
 # This skript does not break if ACMHCosmeticsDisabler.sk is in use
 # Requires skript, skript-reflect, MinehutCosmetics
 	org.bukkit.Bukkit
