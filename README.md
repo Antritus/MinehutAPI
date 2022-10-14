@@ -66,5 +66,6 @@ Minehut rank
 %minehutapi_rank_chat_delay;%id%% = the chat cooldown of the rank
 %minehutapi_rank_chat_cooldown;%id%% = the chat cooldown of the rank
 %minehutapi_rank_ordinal% = the rank java id (in arraylist) (ADMIN = 0)
+# ALL THE RANKS
 %minehutapi_ranks%
 ```
