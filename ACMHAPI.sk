@@ -1,0 +1,173 @@
+# Skript owned by Antritus
+# This skritp allows the use of minehut api (made by Antritus) to be used in other plugins
+# This skript does not break if ACMHCosmeticsDisabler.sk is in use
+# Requires skript, skript-reflect, MinehutCosmetics
+	org.bukkit.Bukkit
+on load:
+	set {antcore::pm::minehut} to Bukkit.getServer().getPluginManager().getPlugin("MinehutCosmetics")
+	set {_c} to 0
+	delete {antcore::minehut::*}
+	broadcast "&8[&3Ant&bCore&8] &7Loading minehut ranks!"
+	loop {antcore::pm::minehut}.api().getRanks().size() times:
+		set {_id} to {antcore::pm::minehut}.api().getRanks().get({_c}).getId()
+		if {antcore::minehut::ranks::*} contains {_id}:
+			continue
+		add {_id} to {antcore::minehut::ranks::*}
+		set {antcore::minehut::rank::%{_id}%::chatDelay} to {core::pm::minehut}.api().getRanks().get({_c}).getChatDelaySeconds()
+		set {antcore::minehut::rank::%{_id}%::extraAuras} to {core::pm::minehut}.api().getRanks().get({_c}).getExtraAuras()
+		set {_perms} to {antcore::minehut::rank::%{_id}%::extraAuras}
+		replace "[" and "]" with "" in {_perms}
+		set {antcore::minehut::rank::%{_id}%::extraAuras::*} to {_perms} split by ", "
+		set {antcore::minehut::rank::%{_id}%::extraPermissions} to {core::pm::minehut}.api().getRanks().get({_c}).getExtraPermissions()
+		set {_perms} to {antcore::minehut::rank::%{_id}%::extraPermissions}
+		replace "[" and "]" with "" in {_perms}
+		set {antcore::minehut::rank::%{_id}%::extraPermissions::*} to {_perms} split by ", "
+		set {antcore::minehut::rank::%{_id}%::ordinal} to {core::pm::minehut}.api().getRanks().get({_c}).getOrdinal()
+		set {antcore::minehut::rank::%{_id}%::formattedName} to {core::pm::minehut}.api().getRanks().get({_c}).getFormattedName("AntCore")
+		set {antcore::minehut::rank::%{_id}%::permissions::*} to {core::pm::minehut}.api().getRanks().get({_c}).getPermissions()
+		set {_perms} to {antcore::minehut::rank::%{_id}%::permissions}
+		replace "[" and "]" with "" in {_perms}
+		set {antcore::minehut::rank::%{_id}%::permissions::*} to {_perms} split by ", "
+		set {antcore::minehut::rank::%{_id}%::prefix} to {core::pm::minehut}.api().getRanks().get({_c}).getPrefix()
+		set {antcore::minehut::rank::%{_id}%::prefixColor} to {core::pm::minehut}.api().getRanks().get({_c}).getPrefixColor()
+		add 1 to {_c}
+		wait 2 ticks
+	broadcast "&8[&3Ant&bCore&8] &aLoaded minehut ranks!"
+function getMinehutRank(rank: string, p: player):
+	send "CHATDELAY: %{antcore::minehut::rank::%{_rank}%::chatDelay}%" to {_p}
+	send "EXTRAAURAS: %{cantcoreore::minehut::rank::%{_rank}%::extraAuras}%" to {_p}
+	send "EXTRAPERMISSIONS: %{antcore::minehut::rank::%{_rank}%::extraPermissions::*}%" to {_p}
+	send "ORDINAL: %{antcore::minehut::rank::%{_rank}%::ordinal}%" to {_p}
+	send "FORMATTEDNAME (ANTCORE): %{antcore::minehut::rank::%{_rank}%::formattedName}%" to {_p}
+	send "PERMISSIONS: %{antcore::minehut::rank::%{_rank}%::permissions::*}%" to {_p}
+	send "PREFIX: %{antcore::minehut::rank::%{_rank}%::prefix}%" to {_p}
+	send "PREFIXCOLOR: %{antcore::minehut::rank::%{_rank}%::prefixColor}%" to {_p}
+function getPlayerMinehutRank(uuid: string) :: string:
+	return {antcore::pm::minehut}.api().getProfile(UUID.fromString({_uuid})).get().getRank()
+effect send [the] minehut rank %string%' data to %players%:
+	parse:
+		continue
+	trigger:
+		set {_rank} to expr-1
+		loop expr-2:
+			set {_p} to loop-value
+			send "&7Chat Delay: &a%{antcore::minehut::rank::%{_rank}%::chatDelay}%" to {_p}
+			send "&7Extra Auras: &a%{cantcoreore::minehut::rank::%{_rank}%::extraAuras}%" to {_p}
+			send "&7Extra Auras(*): &a%{cantcoreore::minehut::rank::%{_rank}%::extraAuras::*}%" to {_p}
+			send "&7Extra Permissions: &a%{antcore::minehut::rank::%{_rank}%::extraPermissions}%" to {_p}
+			send "&7Extra Permissions(*): &a%{antcore::minehut::rank::%{_rank}%::extraPermissions::*}%" to {_p}
+			send "&7Ordinal: &a%{antcore::minehut::rank::%{_rank}%::ordinal}%" to {_p}
+			send formatted "&7Formatted Name (AntCore): <%{antcore::minehut::rank::%{_rank}%::prefixColor}%>%{antcore::minehut::rank::%{_rank}%::prefix}%<%{antcore::minehut::rank::%{_rank}%::prefixColor}%> AntCore" to {_p}
+			send "&7Formatted Name (AntCore)(Component): %{antcore::minehut::rank::%{_rank}%::formattedName}%" to {_p}
+			send "&7Permissions: &a%{antcore::minehut::rank::%{_rank}%::permissions}%" to {_p}
+			send "&7Permissions(*): &a%{antcore::minehut::rank::%{_rank}%::permissions::*}%" to {_p}
+			send "&7Prefix (only MAKER has color): &a%{antcore::minehut::rank::%{_rank}%::prefix}%" to {_p}
+			send "&7Prefix Color: &f%{antcore::minehut::rank::%{_rank}%::prefixColor}%" to {_p}
+effect send [the] data of [the] minehut rank %string% to %players%:
+	parse:
+		continue
+	trigger:
+		set {_rank} to expr-1
+		loop expr-2:
+			set {_p} to loop-value
+			send "&7Chat Delay: &a%{antcore::minehut::rank::%{_rank}%::chatDelay}%" to {_p}
+			send "&7Extra Auras: &a%{cantcoreore::minehut::rank::%{_rank}%::extraAuras}%" to {_p}
+			send "&7Extra Auras(*): &a%{cantcoreore::minehut::rank::%{_rank}%::extraAuras::*}%" to {_p}
+			send "&7Extra Permissions: &a%{antcore::minehut::rank::%{_rank}%::extraPermissions}%" to {_p}
+			send "&7Extra Permissions(*): &a%{antcore::minehut::rank::%{_rank}%::extraPermissions::*}%" to {_p}
+			send "&7Ordinal: &a%{antcore::minehut::rank::%{_rank}%::ordinal}%" to {_p}
+			send formatted "&7Formatted Name (AntCore): <%{antcore::minehut::rank::%{_rank}%::prefixColor}%>%{antcore::minehut::rank::%{_rank}%::prefix}%<%{antcore::minehut::rank::%{_rank}%::prefixColor}%> AntCore" to {_p}
+			send "&7Formatted Name (AntCore)(Component): %{antcore::minehut::rank::%{_rank}%::formattedName}%" to {_p}
+			send "&7Permissions: &a%{antcore::minehut::rank::%{_rank}%::permissions}%" to {_p}
+			send "&7Permissions(*): &a%{antcore::minehut::rank::%{_rank}%::permissions::*}%" to {_p}
+			send "&7Prefix (only MAKER has color): &a%{antcore::minehut::rank::%{_rank}%::prefix}%" to {_p}
+			send "&7Prefix Color: &f%{antcore::minehut::rank::%{_rank}%::prefixColor}%" to {_p}
+expression [the] %player%'s minehut rank:
+	return type: string
+	get:
+		return "%Bukkit.getServer().getPluginManager().getPlugin("MinehutCosmetics").api().getProfile(expr-1.getUniqueId()).get().getRank()%"
+expression [the] minehut rank of %player%:
+	return type: string
+	parse:
+		set {_u} to expr-1
+		set {_u} to {_u}.getUniqueID()
+		continue
+	get:
+		return "%Bukkit.getServer().getPluginManager().getPlugin("MinehutCosmetics").api().getProfile(expr-1.getUniqueId()).get().getRank()%"
+expression [the] [prefix] colo[u]r of minehut rank %string%:
+	return type: string
+	get:
+		return formatted "<%{antcore::minehut::rank::%expr-1%::prefixColor} ? "white"%>"
+
+expression [the] minehut rank %string%'s colo[u]r:
+	return type: string
+	get:
+		return formatted "<%{antcore::minehut::rank::%expr-1%::prefixColor} ? "white"%>"
+expression [the] prefix of [the] minehut rank %string%:
+	return type: string
+	get:
+		return "%{antcore::minehut::rank::%expr-1%::prefix} ? "<unknown>"%"
+expression [the] minehut rank %string%'s prefix:
+	return type: string
+	get:
+		return "%{antcore::minehut::rank::%expr-1%::prefix} ? "<unknown>"%"
+# Most likely returns "" due to 
+expression [the] permission[s] of minehut rank %string%:
+	return type: strings
+	get:
+		return {antcore::minehut::rank::%expr-1%::permissions::*}
+expression [the] minehut rank %string%'s permissions:
+	return type: strings
+	get:
+		return {antcore::minehut::rank::%expr-1%::permissions::*}
+expression [the] extra permission[s] of [the] minehut rank %string%:
+	return type: strings
+	get:
+		return {antcore::minehut::rank::%expr-1%::extraPermissions::*}
+expression [the] minehut rank %string%'s extra permission[s]:
+	return type: strings
+	get:
+		return {antcore::minehut::rank::%expr-1%::extraPermissions::*}
+expression [the] extra aura[s] of [the] minehut rank %string%:
+	return type: strings
+	get:
+		return {antcore::minehut::rank::%expr-1%::extraAuras::*}
+expression [the] minehut rank %string%'s extra aura[s]:
+	return type: strings
+	get:
+		return {antcore::minehut::rank::%expr-1%::extraAuras::*}
+# Chat cooldown
+expression [the] chat delay of [the] minehut rank %string%:
+	return type: integer
+	get:
+		return {antcore::minehut::rank::%expr-1%::chatDelay}
+expression [the] minehut rank %string%'s chat delay:
+	return type: integer
+	get:
+		return {antcore::minehut::rank::%expr-1%::chatDelay}
+expression [the] chat cooldown of [the] minehut rank %string%:
+	return type: integer
+	get:
+		return {antcore::minehut::rank::%expr-1%::chatDelay}
+expression [the] minehut rank %string%'s chat cooldown:
+	return type: integer
+	get:
+		return {antcore::minehut::rank::%expr-1%::chatDelay}
+# The number which the rank
+expression [the] ordinal of [the] minehut rank %string%:
+	return type: integer
+	get:
+		return {antcore::minehut::rank::%expr-1%::ordinal}
+expression [the] minehut rank %string%'s ordinal:
+	return type: integer
+	get:
+		return {antcore::minehut::rank::%expr-1%::ordinal}
+
+expression [the] minehut ranks:
+	return type: strings
+	get:
+		return {antcore::minehut::ranks::*}
+expression [the] ranks of minehut:
+	return type: strings
+	get:
+		return {antcore::minehut::ranks::*}
