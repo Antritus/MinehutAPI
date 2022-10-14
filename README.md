@@ -6,13 +6,13 @@
 %rank% = %string%
 ```
 ###Expressions
-####Player expressions
+Player expressions
 ```
 # Player expressions
 [the] %player%'s minehut rank
 [the] minehut rank of %player%
 ```
-####Rank expressions
+Rank expressions
 ```
 # Prefix
 [the] minehut rank %rank%'s prefix%
@@ -41,22 +41,22 @@
 [the] minehut ranks
 [the] ranks of minehut
 ```
-###Effects:
+Effects:
 ```
 send [the] minehut rank %string%' data to %players%
 send [the] data of [minehut] rank %string% to %players%
 ``
 ## ACMHPlaceholders.sk
 ```
-####Types:
+Types:
 ```
 %id% = the name of the rank
 ```
-#### Player rank
+ Player rank
 ```
 %minehutapi_player_rank% = rank of the placeholder player
 ```
-### Minehut rank
+Minehut rank
 ```
 %minehutapi_rank_id;%id%% = the id of the rank (same as %id%
 %minehutapi_rank_prefix;%id%% = prefix of the rank
