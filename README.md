@@ -1,4 +1,5 @@
 # MinehutAPI Skripts
+This requires MinehutCosmetics!!!!!!!!!
 
 ## MinehutAPI (ACMHAPI.sk)
 ###Types
