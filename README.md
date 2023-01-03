@@ -3,11 +3,11 @@
 This requires MinehutCosmetics!!!!!!!!!
 
 ## MinehutAPI (ACMHAPI.sk)
-###Types
+##Types
 ```
 %rank% = %string%
 ```
-###Expressions
+##Expressions
 Player expressions
 ```
 # Player expressions
