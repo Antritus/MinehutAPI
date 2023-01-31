@@ -1,4 +1,4 @@
-# MinehutAPI Skripts
+# MinehutAPI Skripts (OUT OF ORDER)
 ## This is outdated without the use of minehut cosmetics of the zip folder. Minehut API only gets player ranks in minehut.
 This requires MinehutCosmetics!!!!!!!!!
 
