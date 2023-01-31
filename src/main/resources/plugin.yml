@@ -1,0 +1,11 @@
+name: MinehutPluginsDisabler
+version: '${project.version}'
+main: com.qntcore.minehutpluginsdisabler.MinehutPluginsDisabler
+api-version: 1.13
+prefix: MHDisabler
+authors: [ Antritus ]
+description: Minehut cosmetics (analytics) disabler for minehut servers.
+website: qntcore.com
+softdepend:
+  - MinehutCosmetics
+  - MinehutAnalytics
